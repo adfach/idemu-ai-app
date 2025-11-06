@@ -1,0 +1,39 @@
+{
+  "header": {
+    "marketplace": "Marketplace",
+    "pricing": "Harga",
+    "dashboard": "Dasbor",
+    "login": "Masuk",
+    "signup": "Daftar"
+  },
+  "home": {
+    "hero_title": "Ciptakan Prompt Sempurna, Setiap Saat dengan IdemuAI",
+    "hero_subtitle": "Partner dwibahasa berbasis AI Anda untuk membuat, berbagi, dan mengoptimalkan prompt berkualitas tinggi.",
+    "cta_start": "Mulai Membuat Gratis",
+    "cta_explore": "Jelajahi Marketplace"
+  },
+  "auth": {
+    "welcome_back": "Selamat datang kembali!",
+    "login_prompt": "Silakan masukkan detail Anda untuk masuk.",
+    "create_account": "Buat sebuah akun",
+    "signup_prompt": "Masukkan informasi Anda untuk membuat akun.",
+    "email": "Email",
+    "password": "Kata Sandi",
+    "full_name": "Nama Lengkap",
+    "login_button": "Masuk",
+    "signup_button": "Daftar",
+    "or_continue_with": "Atau lanjutkan dengan",
+    "login_redirect": "Sudah punya akun?",
+    "signup_redirect": "Belum punya akun?",
+    "terms_agreement": "Dengan membuat akun, Anda menyetujui"
+  },
+  "dashboard": {
+    "title": "Dasbor",
+    "create_prompt": "Buat Prompt"
+  },
+  "user_nav": {
+    "profile": "Profil",
+    "upgrade": "Tingkatkan",
+    "logout": "Keluar"
+  }
+}

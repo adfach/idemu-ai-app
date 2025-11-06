@@ -1,0 +1,39 @@
+{
+  "header": {
+    "marketplace": "Marketplace",
+    "pricing": "Pricing",
+    "dashboard": "Dashboard",
+    "login": "Log In",
+    "signup": "Sign Up"
+  },
+  "home": {
+    "hero_title": "Craft the Perfect Prompt, Every Time with IdemuAI",
+    "hero_subtitle": "Your bilingual AI-powered partner for creating, sharing, and optimizing high-quality prompts.",
+    "cta_start": "Start Creating for Free",
+    "cta_explore": "Explore Marketplace"
+  },
+  "auth": {
+    "welcome_back": "Welcome back!",
+    "login_prompt": "Please enter your details to sign in.",
+    "create_account": "Create an account",
+    "signup_prompt": "Enter your information to create your account.",
+    "email": "Email",
+    "password": "Password",
+    "full_name": "Full Name",
+    "login_button": "Log In",
+    "signup_button": "Sign Up",
+    "or_continue_with": "Or continue with",
+    "login_redirect": "Already have an account?",
+    "signup_redirect": "Don't have an account?",
+    "terms_agreement": "By creating an account, you agree to our"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "create_prompt": "Create Prompt"
+  },
+  "user_nav": {
+    "profile": "Profile",
+    "upgrade": "Upgrade",
+    "logout": "Log out"
+  }
+}
