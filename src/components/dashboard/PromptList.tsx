@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Edit, Trash2, Library, PlusCircle } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 const mockPrompts = [
   { id: 1, title: 'Generate a marketing slogan for a new coffee brand.', category: 'Marketing' },
@@ -21,14 +22,15 @@ const mockPrompts = [
 ];
 
 export default function PromptList() {
+  const { t } = useLanguage();
   return (
     <Card className="glass-card h-full">
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
-            <Library className="h-6 w-6" /> Your Prompts
+            <Library className="h-6 w-6" /> {t('dashboard.prompt_list.title')}
         </CardTitle>
         <CardDescription>
-          A library of your saved prompts. You have used {mockPrompts.length}/10 free slots.
+          {t('dashboard.prompt_list.description', { count: mockPrompts.length })}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -56,9 +58,9 @@ export default function PromptList() {
         ) : (
             <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted p-8 text-center">
                 <Library className="h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-semibold">No Prompts Yet</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Start by creating a new prompt to see it here.</p>
-                <Button className="mt-4" variant="outline"><PlusCircle className="mr-2 h-4 w-4" /> Create Prompt</Button>
+                <h3 className="mt-4 text-lg font-semibold">{t('dashboard.prompt_list.empty_title')}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{t('dashboard.prompt_list.empty_description')}</p>
+                <Button className="mt-4" variant="outline"><PlusCircle className="mr-2 h-4 w-4" /> {t('dashboard.create_prompt')}</Button>
             </div>
         )}
       </CardContent>

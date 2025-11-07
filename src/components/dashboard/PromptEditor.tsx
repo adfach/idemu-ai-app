@@ -126,23 +126,22 @@ export default function PromptEditor() {
     <Card className="glass-card w-full">
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
-          <PlusCircle className="h-6 w-6" /> Create a New Prompt
+          <PlusCircle className="h-6 w-6" /> {t('dashboard.prompt_editor.title')}
         </CardTitle>
         <CardDescription>
-          Write your prompt below or generate ideas. Use our AI tools to refine
-          it.
+          {t('dashboard.prompt_editor.description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <Textarea
-          placeholder="e.g., 'Generate a marketing slogan for a new coffee brand...'"
+          placeholder={t('dashboard.prompt_editor.placeholder')}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           className="min-h-[150px] text-base"
         />
         <Select onValueChange={setCategory} value={category}>
           <SelectTrigger>
-            <SelectValue placeholder="Select a category" />
+            <SelectValue placeholder={t('dashboard.prompt_editor.category_placeholder')} />
           </SelectTrigger>
           <SelectContent>
             {categories.map((cat) => (
@@ -156,7 +155,7 @@ export default function PromptEditor() {
         {(suggestions.length > 0 || ideas.length > 0) && (
           <Alert className="glass-primary">
             <BrainCircuit className="h-4 w-4" />
-            <AlertTitle className="font-headline">AI Suggestions</AlertTitle>
+            <AlertTitle className="font-headline">{t('dashboard.prompt_editor.ai_suggestions_title')}</AlertTitle>
             <AlertDescription>
               {(suggestions.length > 0 ? suggestions : ideas).map(
                 (item, index) => (
@@ -186,7 +185,7 @@ export default function PromptEditor() {
             ) : (
               <Wand2 />
             )}
-            Optimize
+            {t('dashboard.prompt_editor.optimize')}
           </Button>
           <Button
             onClick={handleSuggestions}
@@ -198,7 +197,7 @@ export default function PromptEditor() {
             ) : (
               <Lightbulb />
             )}
-            Suggestions
+            {t('dashboard.prompt_editor.suggestions')}
           </Button>
           <Button
             onClick={handleGenerateIdeas}
@@ -210,7 +209,7 @@ export default function PromptEditor() {
             ) : (
               <BrainCircuit />
             )}
-            Ideas
+            {t('dashboard.prompt_editor.ideas')}
           </Button>
         </div>
         <Button onClick={handleSave} disabled={!prompt || !category || isLoading}>
@@ -219,7 +218,7 @@ export default function PromptEditor() {
           ) : (
             <Save />
           )}
-          Save Prompt
+          {t('dashboard.prompt_editor.save')}
         </Button>
       </CardFooter>
     </Card>

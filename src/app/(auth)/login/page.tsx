@@ -84,7 +84,7 @@ export default function LoginPage() {
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Logging in...' : t('auth.login_button')}
+            {loading ? t('auth.logging_in') : t('auth.login_button')}
           </Button>
         </form>
         <div className="relative my-6">

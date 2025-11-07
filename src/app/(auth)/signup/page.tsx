@@ -81,7 +81,7 @@ export default function SignupPage() {
             <Input id="password" type="password" required value={password} onChange={e => setPassword(e.target.value)} disabled={loading} />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Creating account...' : t('auth.signup_button')}
+            {loading ? t('auth.creating_account') : t('auth.signup_button')}
           </Button>
         </form>
         <div className="relative my-6">

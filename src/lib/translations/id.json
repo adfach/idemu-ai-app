@@ -1,3 +1,4 @@
+
 {
   "header": {
     "marketplace": "Marketplace",
@@ -26,11 +27,32 @@
     "login_redirect": "Sudah punya akun?",
     "signup_redirect": "Belum punya akun?",
     "terms_agreement": "Dengan membuat akun, Anda menyetujui",
-    "change_language": "Ubah bahasa"
+    "change_language": "Ubah bahasa",
+    "logging_in": "Sedang masuk...",
+    "creating_account": "Membuat akun..."
   },
   "dashboard": {
     "title": "Dasbor",
-    "create_prompt": "Buat Prompt"
+    "create_prompt": "Buat Prompt",
+    "welcome": "Selamat datang kembali",
+    "welcome_subtitle": "Di sinilah perjalanan kreatif Anda dimulai. Buat, kelola, dan optimalkan prompt AI Anda.",
+    "prompt_editor": {
+      "title": "Buat Prompt Baru",
+      "description": "Tulis prompt Anda di bawah atau hasilkan ide. Gunakan alat AI kami untuk menyempurnakannya.",
+      "placeholder": "contoh: 'Hasilkan slogan pemasaran untuk merek kopi baru...'",
+      "category_placeholder": "Pilih kategori",
+      "optimize": "Optimalkan",
+      "suggestions": "Saran",
+      "ideas": "Ide",
+      "save": "Simpan Prompt",
+      "ai_suggestions_title": "Saran AI"
+    },
+    "prompt_list": {
+      "title": "Prompt Anda",
+      "description": "Perpustakaan prompt yang Anda simpan. Anda telah menggunakan {count}/10 slot gratis.",
+      "empty_title": "Belum Ada Prompt",
+      "empty_description": "Mulai dengan membuat prompt baru untuk melihatnya di sini."
+    }
   },
   "user_nav": {
     "profile": "Profil",
