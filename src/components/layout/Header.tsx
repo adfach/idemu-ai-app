@@ -17,21 +17,22 @@ export function Header() {
           <IdemuLogo className="h-6 w-6" />
           <span className="font-headline text-lg font-bold">IdemuAI</span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm md:flex">
-          <Link
-            href="/marketplace"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Marketplace
-          </Link>
-          <Link
-            href="/pricing"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Pricing
-          </Link>
-        </nav>
+        
         <div className="ml-auto flex items-center gap-4">
+          <nav className="hidden items-center gap-6 text-sm md:flex">
+            <Link
+              href="/marketplace"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Marketplace
+            </Link>
+            <Link
+              href="/pricing"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Pricing
+            </Link>
+          </nav>
           <LanguageSwitcher />
           {loading ? (
              <div className="h-9 w-20 animate-pulse rounded-md bg-muted"></div>
