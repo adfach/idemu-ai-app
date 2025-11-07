@@ -142,24 +142,10 @@ export default function Home() {
       </main>
 
       <footer className="w-full border-t">
-        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 md:flex-row">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-4 px-4 py-8">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} IdemuAI. All rights reserved.
+            &copy; {new Date().getFullYear()} Fakhri Chusain EDUCATION
           </p>
-          <div className="flex gap-4">
-            <Link
-              href="/privacy"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </footer>
     </div>
