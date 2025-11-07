@@ -48,7 +48,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <section className="relative w-full py-20 md:py-32 lg:py-40">
+        <section className="relative flex h-[calc(100vh-4rem)] w-full items-center">
           <div className="absolute inset-0 bg-grid-purple-500/[0.05] [mask-image:linear-gradient(to_bottom,white_5%,transparent_50%)] dark:[mask-image:linear-gradient(to_bottom,white_10%,transparent_60%)]"></div>
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background to-background/80 via-background/50"></div>
           <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-4 md:grid-cols-2 lg:gap-16">
@@ -79,7 +79,7 @@ export default function Home() {
                     width={600}
                     height={600}
                     alt="Hasil generate prompt"
-                    className="rounded-lg"
+                    className="aspect-square w-full rounded-lg object-cover"
                     data-ai-hint="abstract art"
                     priority
                   />
