@@ -1,3 +1,4 @@
+
 {
   "header": {
     "marketplace": "Marketplace",
@@ -26,11 +27,32 @@
     "login_redirect": "Already have an account?",
     "signup_redirect": "Don't have an account?",
     "terms_agreement": "By creating an account, you agree to our",
-    "change_language": "Change language"
+    "change_language": "Change language",
+    "logging_in": "Logging in...",
+    "creating_account": "Creating account..."
   },
   "dashboard": {
     "title": "Dashboard",
-    "create_prompt": "Create Prompt"
+    "create_prompt": "Create Prompt",
+    "welcome": "Welcome back",
+    "welcome_subtitle": "This is where your creative journey begins. Create, manage, and optimize your AI prompts.",
+    "prompt_editor": {
+      "title": "Create a New Prompt",
+      "description": "Write your prompt below or generate ideas. Use our AI tools to perfect it.",
+      "placeholder": "e.g., 'Generate a marketing slogan for a new coffee brand...'",
+      "category_placeholder": "Select a category",
+      "optimize": "Optimize",
+      "suggestions": "Suggestions",
+      "ideas": "Ideas",
+      "save": "Save Prompt",
+      "ai_suggestions_title": "AI Suggestions"
+    },
+    "prompt_list": {
+      "title": "Your Prompts",
+      "description": "Your library of saved prompts. You've used {count}/10 free slots.",
+      "empty_title": "No Prompts Yet",
+      "empty_description": "Start by creating a new prompt to see it here."
+    }
   },
   "user_nav": {
     "profile": "Profile",
