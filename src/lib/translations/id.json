@@ -123,5 +123,13 @@
   },
   "prompt_card": {
     "remix": "Remix"
+  },
+  "ai_mentor": {
+    "open": "Buka Mentor AI",
+    "title": "Mentor AI",
+    "description": "Dapatkan bantuan, tutorial, dan tips penyempurnaan prompt.",
+    "initial_message": "Halo! Saya adalah Mentor AI Anda. Bagaimana saya bisa membantu Anda menyempurnakan prompt hari ini?",
+    "mock_response": "Itu pertanyaan yang bagus! Untuk memperbaikinya, Anda bisa mencoba lebih spesifik tentang target audiens. Contohnya...",
+    "placeholder": "Minta tips..."
   }
 }

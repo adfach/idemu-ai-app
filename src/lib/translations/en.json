@@ -123,5 +123,13 @@
   },
   "prompt_card": {
     "remix": "Remix"
+  },
+  "ai_mentor": {
+    "open": "Open AI Mentor",
+    "title": "AI Mentor",
+    "description": "Get help, tutorials, and prompt improvement tips.",
+    "initial_message": "Hello! I am your AI Mentor. How can I help you improve your prompts today?",
+    "mock_response": "That's a great question! To improve that, you could try being more specific about the target audience. For example...",
+    "placeholder": "Ask for a tip..."
   }
 }

@@ -14,6 +14,7 @@ import { Bot, Send, Sparkles } from 'lucide-react';
 import { Input } from './ui/input';
 import { ScrollArea } from './ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { useLanguage } from '@/hooks/use-language';
 
 interface Message {
     sender: 'user' | 'bot';
@@ -21,8 +22,9 @@ interface Message {
 }
 
 export default function AiMentor() {
+  const { t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: 'Hello! I am your AI Mentor. How can I help you improve your prompts today?' }
+    { sender: 'bot', text: t('ai_mentor.initial_message') }
   ]);
   const [input, setInput] = useState('');
 
@@ -34,7 +36,7 @@ export default function AiMentor() {
     
     // Mock bot response
     setTimeout(() => {
-        setMessages(prev => [...prev, { sender: 'bot', text: 'That\'s a great question! To improve that, you could try being more specific about the target audience. For example...'}])
+        setMessages(prev => [...prev, { sender: 'bot', text: t('ai_mentor.mock_response')}])
     }, 1000);
   };
 
@@ -46,16 +48,16 @@ export default function AiMentor() {
           size="icon"
         >
           <Sparkles className="h-6 w-6 animate-pulse" />
-          <span className="sr-only">Open AI Mentor</span>
+          <span className="sr-only">{t('ai_mentor.open')}</span>
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader>
           <SheetTitle className="font-headline flex items-center gap-2">
-            <Bot /> AI Mentor
+            <Bot /> {t('ai_mentor.title')}
           </SheetTitle>
           <SheetDescription>
-            Get help, tutorials, and prompt improvement tips.
+            {t('ai_mentor.description')}
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1 overflow-hidden">
@@ -81,7 +83,7 @@ export default function AiMentor() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask for a tip..."
+            placeholder={t('ai_mentor.placeholder')}
           />
           <Button onClick={handleSend} size="icon">
             <Send className="h-4 w-4" />
