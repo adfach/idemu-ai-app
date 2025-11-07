@@ -17,15 +17,20 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 const translations = { en, id };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('id');
 
   useEffect(() => {
-    const browserLang = navigator.language.split('-')[0];
     const storedLang = localStorage.getItem('idemu_lang') as Language;
     if (storedLang) {
       setLanguageState(storedLang);
-    } else if (browserLang === 'id') {
-      setLanguageState('id');
+    } else {
+      const browserLang = navigator.language.split('-')[0];
+      if (browserLang === 'id') {
+        setLanguageState('id');
+      } else {
+        // Default to Indonesian if not explicitly set or detected
+        setLanguageState('id');
+      }
     }
   }, []);
 
