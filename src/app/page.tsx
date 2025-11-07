@@ -51,8 +51,8 @@ export default function Home() {
         <section className="relative w-full py-20 md:py-32 lg:py-40">
           <div className="absolute inset-0 bg-grid-purple-500/[0.05] [mask-image:linear-gradient(to_bottom,white_5%,transparent_50%)] dark:[mask-image:linear-gradient(to_bottom,white_10%,transparent_60%)]"></div>
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background to-background/80 via-background/50"></div>
-          <div className="container mx-auto px-4 text-center">
-            <div className="mx-auto max-w-3xl">
+          <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-4 md:grid-cols-2 lg:gap-16">
+            <div className="text-center md:text-left">
               <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 {t('home.hero_title_part1')}{' '}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -62,7 +62,7 @@ export default function Home() {
               <p className="mt-6 text-lg text-muted-foreground md:text-xl">
                 {t('home.hero_subtitle')}
               </p>
-              <div className="mt-10 flex justify-center gap-4">
+              <div className="mt-10 flex justify-center gap-4 md:justify-start">
                 <Button asChild size="lg">
                   <Link href="/signup">{t('home.cta_start')}</Link>
                 </Button>
@@ -71,17 +71,16 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative mt-16 sm:mt-20">
-              <div className="absolute inset-x-0 -top-10 -bottom-20 bg-gradient-to-t from-background via-background/80 to-transparent dark:from-background dark:via-background/90 dark:to-transparent"></div>
+            <div className="relative">
               <Card className="glass-card relative shadow-2xl shadow-primary/10">
                 <CardContent className="p-2">
                   <Image
-                    src="https://picsum.photos/seed/idemu-dashboard/1200/650"
-                    width={1200}
-                    height={650}
-                    alt="IdemuAI Dashboard Screenshot"
+                    src="https://picsum.photos/seed/prompt-result/600/600"
+                    width={600}
+                    height={600}
+                    alt="Hasil generate prompt"
                     className="rounded-lg"
-                    data-ai-hint="dashboard screenshot"
+                    data-ai-hint="abstract art"
                     priority
                   />
                 </CardContent>
