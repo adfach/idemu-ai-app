@@ -25,7 +25,8 @@
     "or_continue_with": "Or continue with",
     "login_redirect": "Already have an account?",
     "signup_redirect": "Don't have an account?",
-    "terms_agreement": "By creating an account, you agree to our"
+    "terms_agreement": "By creating an account, you agree to our",
+    "change_language": "Change language"
   },
   "dashboard": {
     "title": "Dashboard",

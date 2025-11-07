@@ -11,14 +11,14 @@ import { useLanguage } from "@/hooks/use-language";
 import { Languages } from "lucide-react";
 
 export function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
           <Languages className="h-5 w-5" />
-          <span className="sr-only">Change language</span>
+          <span className="sr-only">{t('auth.change_language')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

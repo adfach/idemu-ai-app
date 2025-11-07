@@ -25,7 +25,8 @@
     "or_continue_with": "Atau lanjutkan dengan",
     "login_redirect": "Sudah punya akun?",
     "signup_redirect": "Belum punya akun?",
-    "terms_agreement": "Dengan membuat akun, Anda menyetujui"
+    "terms_agreement": "Dengan membuat akun, Anda menyetujui",
+    "change_language": "Ubah bahasa"
   },
   "dashboard": {
     "title": "Dasbor",
