@@ -8,8 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, Wand2, Users, Flame, Star, Clock } from "lucide-react";
+import { Search, Flame, Clock, Star } from "lucide-react";
 import PromptCard from "@/components/marketplace/PromptCard";
+import { useLanguage } from "@/hooks/use-language";
 
 const mockPrompts = [
   { id: 1, title: 'E-commerce Product Description Generator', author: 'MarketingMaster', likes: 125, remixes: 42, category: 'Marketing', isPremium: false },
@@ -23,48 +24,49 @@ const mockPrompts = [
 ];
 
 export default function MarketplacePage() {
+  const { t } = useLanguage();
   return (
     <div className="space-y-8">
         <div>
             <h2 className="text-3xl font-bold font-headline tracking-tight">
-                Prompt Marketplace
+                {t('marketplace.title')}
             </h2>
-            <p className="text-muted-foreground">Discover, share, and remix prompts from the IdemuAI community.</p>
+            <p className="text-muted-foreground">{t('marketplace.subtitle')}</p>
         </div>
 
         <div className="flex flex-col gap-4 md:flex-row">
             <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input placeholder="Search prompts..." className="pl-10" />
+                <Input placeholder={t('marketplace.search_placeholder')} className="pl-10" />
             </div>
             <div className="flex gap-4">
                 <Select>
                     <SelectTrigger className="w-full md:w-[180px]">
-                        <SelectValue placeholder="All Categories" />
+                        <SelectValue placeholder={t('marketplace.all_categories')} />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">All Categories</SelectItem>
-                        <SelectItem value="writing">Writing</SelectItem>
-                        <SelectItem value="marketing">Marketing</SelectItem>
-                        <SelectItem value="design">Design</SelectItem>
-                        <SelectItem value="developer">Developer Tools</SelectItem>
-                        <SelectItem value="business">Business</SelectItem>
-                        <SelectItem value="education">Education</SelectItem>
+                        <SelectItem value="all">{t('marketplace.all_categories')}</SelectItem>
+                        <SelectItem value="writing">{t('marketplace.categories.writing')}</SelectItem>
+                        <SelectItem value="marketing">{t('marketplace.categories.marketing')}</SelectItem>
+                        <SelectItem value="design">{t('marketplace.categories.design')}</SelectItem>
+                        <SelectItem value="developer">{t('marketplace.categories.developer')}</SelectItem>
+                        <SelectItem value="business">{t('marketplace.categories.business')}</SelectItem>
+                        <SelectItem value="education">{t('marketplace.categories.education')}</SelectItem>
                     </SelectContent>
                 </Select>
                 <Select>
                     <SelectTrigger className="w-full md:w-[180px]">
-                        <SelectValue placeholder="Sort by: Popular" />
+                        <SelectValue placeholder={t('marketplace.sort_by_placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="popular">
-                          <div className="flex items-center gap-2"><Flame className="h-4 w-4" /> Popular</div>
+                          <div className="flex items-center gap-2"><Flame className="h-4 w-4" /> {t('marketplace.sort.popular')}</div>
                         </SelectItem>
                         <SelectItem value="newest">
-                           <div className="flex items-center gap-2"><Clock className="h-4 w-4" /> Newest</div>
+                           <div className="flex items-center gap-2"><Clock className="h-4 w-4" /> {t('marketplace.sort.newest')}</div>
                         </SelectItem>
                         <SelectItem value="top-rated">
-                           <div className="flex items-center gap-2"><Star className="h-4 w-4" /> Top Rated</div>
+                           <div className="flex items-center gap-2"><Star className="h-4 w-4" /> {t('marketplace.sort.top_rated')}</div>
                         </SelectItem>
                     </SelectContent>
                 </Select>

@@ -100,5 +100,28 @@
     "sort_newest": "Newest",
     "sort_oldest": "Oldest",
     "sort_alphabetical": "Alphabetical"
+  },
+  "marketplace": {
+    "title": "Prompt Marketplace",
+    "subtitle": "Discover, share, and remix prompts from the IdemuAI community.",
+    "search_placeholder": "Search prompts...",
+    "all_categories": "All Categories",
+    "categories": {
+      "writing": "Writing",
+      "marketing": "Marketing",
+      "design": "Design",
+      "developer": "Developer Tools",
+      "business": "Business",
+      "education": "Education"
+    },
+    "sort_by_placeholder": "Sort by: Popular",
+    "sort": {
+      "popular": "Popular",
+      "newest": "Newest",
+      "top_rated": "Top Rated"
+    }
+  },
+  "prompt_card": {
+    "remix": "Remix"
   }
 }

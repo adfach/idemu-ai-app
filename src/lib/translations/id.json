@@ -100,5 +100,28 @@
     "sort_newest": "Terbaru",
     "sort_oldest": "Terlama",
     "sort_alphabetical": "Abjad"
+  },
+  "marketplace": {
+    "title": "Marketplace Prompt",
+    "subtitle": "Temukan, bagikan, dan remix prompt dari komunitas IdemuAI.",
+    "search_placeholder": "Cari prompt...",
+    "all_categories": "Semua Kategori",
+    "categories": {
+      "writing": "Menulis",
+      "marketing": "Pemasaran",
+      "design": "Desain",
+      "developer": "Alat Pengembang",
+      "business": "Bisnis",
+      "education": "Pendidikan"
+    },
+    "sort_by_placeholder": "Urutkan: Populer",
+    "sort": {
+      "popular": "Populer",
+      "newest": "Terbaru",
+      "top_rated": "Peringkat Teratas"
+    }
+  },
+  "prompt_card": {
+    "remix": "Remix"
   }
 }

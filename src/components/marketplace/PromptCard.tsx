@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, GitFork, Star } from "lucide-react";
 import Link from 'next/link';
+import { useLanguage } from "@/hooks/use-language";
 
 interface PromptCardProps {
   id: number;
@@ -26,6 +27,7 @@ interface PromptCardProps {
 const getInitials = (name: string) => name.split(' ').map(n => n[0]).slice(0, 2).join('');
 
 export default function PromptCard({ title, author, likes, remixes, category, isPremium }: PromptCardProps) {
+  const { t } = useLanguage();
   return (
     <Card className="glass-card flex h-full flex-col transition-all duration-300 hover:shadow-primary/10 hover:-translate-y-1">
       <CardHeader>
@@ -62,8 +64,8 @@ export default function PromptCard({ title, author, likes, remixes, category, is
                 <span>{remixes}</span>
             </div>
         </div>
-        <Button size="sm">
-            Remix
+        <Button asChild size="sm">
+          <Link href="/dashboard">{t('prompt_card.remix')}</Link>
         </Button>
       </CardFooter>
     </Card>
