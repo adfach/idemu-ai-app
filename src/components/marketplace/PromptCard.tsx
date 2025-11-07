@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, GitFork, Star } from "lucide-react";
 import Link from 'next/link';
 import { useLanguage } from "@/hooks/use-language";
@@ -23,8 +22,6 @@ interface PromptCardProps {
   category: string;
   isPremium: boolean;
 }
-
-const getInitials = (name: string) => name.split(' ').map(n => n[0]).slice(0, 2).join('');
 
 export default function PromptCard({ title, author, likes, remixes, category, isPremium }: PromptCardProps) {
   const { t } = useLanguage();
@@ -46,10 +43,6 @@ export default function PromptCard({ title, author, likes, remixes, category, is
       </CardHeader>
       <CardContent className="flex-1">
         <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8">
-                <AvatarImage src={`https://i.pravatar.cc/40?u=${author}`} />
-                <AvatarFallback>{getInitials(author)}</AvatarFallback>
-            </Avatar>
             <span className="text-sm font-medium text-muted-foreground">by {author}</span>
         </div>
       </CardContent>

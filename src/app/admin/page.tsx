@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { IdemuLogo } from '@/components/icons/IdemuLogo';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Users, FileText, BarChart } from 'lucide-react';
 
 const mockUsers = [
@@ -101,10 +100,6 @@ export default function AdminPage() {
                                 <TableRow key={u.id}>
                                     <TableCell>
                                         <div className="flex items-center gap-3">
-                                            <Avatar>
-                                                <AvatarImage src={`https://i.pravatar.cc/40?u=${u.email}`} />
-                                                <AvatarFallback>{u.name.charAt(0)}</AvatarFallback>
-                                            </Avatar>
                                             <div>
                                                 <p className="font-medium">{u.name}</p>
                                                 <p className="text-sm text-muted-foreground">{u.email}</p>
