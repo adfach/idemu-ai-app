@@ -74,5 +74,21 @@
     "profile": "Profil",
     "upgrade": "Tingkatkan",
     "logout": "Keluar"
+  },
+  "profile": {
+    "title": "Profil Anda",
+    "subtitle": "Kelola pengaturan dan preferensi akun Anda.",
+    "personal_info_title": "Informasi Pribadi",
+    "personal_info_desc": "Perbarui foto dan detail pribadi Anda di sini.",
+    "save_changes": "Simpan Perubahan",
+    "saving": "Menyimpan...",
+    "danger_zone_title": "Zona Berbahaya",
+    "danger_zone_desc": "Kelola pengaturan penghapusan akun Anda.",
+    "delete_account_button": "Hapus Akun",
+    "delete_account_warning": "Setelah Anda menghapus akun, tidak ada jalan untuk kembali. Harap yakin.",
+    "update_success_title": "Profil Diperbarui",
+    "update_success_desc": "Perubahan Anda telah berhasil disimpan.",
+    "update_failed_title": "Pembaruan Gagal",
+    "update_failed_desc": "Tidak dapat menyimpan perubahan Anda. Silakan coba lagi."
   }
 }

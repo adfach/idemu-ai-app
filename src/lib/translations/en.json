@@ -74,5 +74,21 @@
     "profile": "Profile",
     "upgrade": "Upgrade",
     "logout": "Log out"
+  },
+  "profile": {
+    "title": "Your Profile",
+    "subtitle": "Manage your account settings and preferences.",
+    "personal_info_title": "Personal Information",
+    "personal_info_desc": "Update your photo and personal details here.",
+    "save_changes": "Save Changes",
+    "saving": "Saving...",
+    "danger_zone_title": "Danger Zone",
+    "danger_zone_desc": "Manage your account deletion settings.",
+    "delete_account_button": "Delete Account",
+    "delete_account_warning": "Once you delete your account, there is no going back. Please be certain.",
+    "update_success_title": "Profile Updated",
+    "update_success_desc": "Your changes have been saved successfully.",
+    "update_failed_title": "Update Failed",
+    "update_failed_desc": "Could not save your changes. Please try again."
   }
 }

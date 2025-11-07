@@ -9,10 +9,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { Camera, Loader2 } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function ProfilePage() {
     const { user, updateProfile, loading } = useAuth();
     const { toast } = useToast();
+    const { t } = useLanguage();
     const [displayName, setDisplayName] = useState(user?.displayName || '');
     const [isSaving, setIsSaving] = useState(false);
 
@@ -32,14 +34,14 @@ export default function ProfilePage() {
         try {
             await updateProfile({ displayName });
             toast({
-                title: "Profile Updated",
-                description: "Your changes have been saved successfully.",
+                title: t('profile.update_success_title'),
+                description: t('profile.update_success_desc'),
             });
         } catch (error) {
              toast({
                 variant: "destructive",
-                title: "Update Failed",
-                description: "Could not save your changes. Please try again.",
+                title: t('profile.update_failed_title'),
+                description: t('profile.update_failed_desc'),
             });
         }
         setIsSaving(false);
@@ -49,15 +51,15 @@ export default function ProfilePage() {
         <div className="space-y-8">
              <div>
                 <h2 className="text-3xl font-bold font-headline tracking-tight">
-                    Your Profile
+                    {t('profile.title')}
                 </h2>
-                <p className="text-muted-foreground">Manage your account settings and preferences.</p>
+                <p className="text-muted-foreground">{t('profile.subtitle')}</p>
             </div>
 
             <Card className="max-w-2xl">
                 <CardHeader>
-                    <CardTitle>Personal Information</CardTitle>
-                    <CardDescription>Update your photo and personal details here.</CardDescription>
+                    <CardTitle>{t('profile.personal_info_title')}</CardTitle>
+                    <CardDescription>{t('profile.personal_info_desc')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center gap-4">
@@ -76,30 +78,30 @@ export default function ProfilePage() {
                         </div>
                     </div>
                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">{t('auth.full_name')}</Label>
                         <Input id="name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} disabled={isSaving || loading} />
                     </div>
                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">{t('auth.email')}</Label>
                         <Input id="email" type="email" defaultValue={user?.email || ''} disabled />
                     </div>
                 </CardContent>
                 <CardFooter>
                     <Button onClick={handleSaveChanges} disabled={isSaving || loading || displayName === user?.displayName}>
                         {isSaving ? <Loader2 className="animate-spin" /> : null}
-                        {isSaving ? 'Saving...' : 'Save Changes'}
+                        {isSaving ? t('profile.saving') : t('profile.save_changes')}
                     </Button>
                 </CardFooter>
             </Card>
 
             <Card className="max-w-2xl">
                 <CardHeader>
-                    <CardTitle>Danger Zone</CardTitle>
-                    <CardDescription>Manage your account deletion settings.</CardDescription>
+                    <CardTitle>{t('profile.danger_zone_title')}</CardTitle>
+                    <CardDescription>{t('profile.danger_zone_desc')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button variant="destructive">Delete Account</Button>
-                    <p className="text-sm text-muted-foreground mt-2">Once you delete your account, there is no going back. Please be certain.</p>
+                    <Button variant="destructive">{t('profile.delete_account_button')}</Button>
+                    <p className="text-sm text-muted-foreground mt-2">{t('profile.delete_account_warning')}</p>
                 </CardContent>
             </Card>
         </div>
