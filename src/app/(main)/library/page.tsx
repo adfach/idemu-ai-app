@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,21 +18,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Search, Clock, ArrowDownAZ, ArrowUpAZ, Edit, Trash2 } from "lucide-react";
+import { Search, Clock, ArrowDownAZ, Edit, Trash2, Library } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
-
-const mockPrompts = [
-  { id: 1, title: 'Generate a marketing slogan for a new coffee brand.', category: 'Marketing', createdAt: '2023-10-27T10:00:00Z', isPublic: true },
-  { id: 2, title: 'Write a short story in the style of Edgar Allan Poe.', category: 'Writing', createdAt: '2023-10-26T15:30:00Z', isPublic: false },
-  { id: 3, title: 'Create a responsive navigation bar using Flexbox.', category: 'Developer Tools', createdAt: '2023-10-25T11:00:00Z', isPublic: true },
-  { id: 4, title: 'Design a logo for a tech startup named "Innovate".', category: 'Design', createdAt: '2023-10-24T09:00:00Z', isPublic: false },
-  { id: 5, title: 'Explain the concept of photosynthesis to a 5th grader.', category: 'Education', createdAt: '2023-10-23T14:00:00Z', isPublic: false },
-  { id: 6, title: 'Generate five blog post ideas about renewable energy.', category: 'Writing', createdAt: '2023-10-22T18:00:00Z', isPublic: true },
-  { id: 7, title: 'Create a Python script to scrape a website for data.', category: 'Developer Tools', createdAt: '2023-10-21T12:00:00Z', isPublic: false },
-];
+import { usePrompts } from "@/hooks/use-prompts";
 
 export default function LibraryPage() {
   const { t } = useLanguage();
+  const { prompts, deletePrompt } = usePrompts();
+  const router = useRouter();
+
+  const handleEdit = (id: number) => {
+    router.push(`/dashboard?edit=${id}`);
+  };
 
   return (
     <div className="space-y-8">
@@ -67,41 +65,46 @@ export default function LibraryPage() {
         </div>
       </div>
       
-      <div className="overflow-hidden rounded-lg border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead className="hidden md:table-cell">Category</TableHead>
-              <TableHead className="hidden lg:table-cell">Created</TableHead>
-              <TableHead className="hidden md:table-cell">Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {mockPrompts.map(prompt => (
-              <TableRow key={prompt.id}>
-                <TableCell className="font-medium">{prompt.title}</TableCell>
-                <TableCell className="hidden md:table-cell"><Badge variant="secondary">{prompt.category}</Badge></TableCell>
-                <TableCell className="hidden lg:table-cell">{new Date(prompt.createdAt).toLocaleDateString()}</TableCell>
-                <TableCell className="hidden md:table-cell">
-                    <Badge variant={prompt.isPublic ? 'default' : 'outline'}>
-                        {prompt.isPublic ? 'Public' : 'Private'}
-                    </Badge>
-                </TableCell>
-                <TableCell className="text-right">
-                   <Button variant="ghost" size="icon">
-                        <Edit className="h-4 w-4" />
-                   </Button>
-                    <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
-                        <Trash2 className="h-4 w-4" />
-                   </Button>
-                </TableCell>
+      {prompts.length > 0 ? (
+        <div className="overflow-hidden rounded-lg border">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Title</TableHead>
+                <TableHead className="hidden md:table-cell">Category</TableHead>
+                <TableHead className="hidden lg:table-cell">Created</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+            </TableHeader>
+            <TableBody>
+              {prompts.map(prompt => (
+                <TableRow key={prompt.id}>
+                  <TableCell className="font-medium">{prompt.title}</TableCell>
+                  <TableCell className="hidden md:table-cell"><Badge variant="secondary">{prompt.category}</Badge></TableCell>
+                  <TableCell className="hidden lg:table-cell">{new Date(prompt.id).toLocaleDateString()}</TableCell>
+                  <TableCell className="text-right">
+                     <Button variant="ghost" size="icon" onClick={() => handleEdit(prompt.id)}>
+                          <Edit className="h-4 w-4" />
+                     </Button>
+                      <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive" onClick={() => deletePrompt(prompt.id)}>
+                          <Trash2 className="h-4 w-4" />
+                     </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      ) : (
+         <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted p-8 text-center h-96">
+            <Library className="h-12 w-12 text-muted-foreground" />
+            <h3 className="mt-4 text-lg font-semibold">{t('dashboard.prompt_list.empty_title')}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{t('dashboard.prompt_list.empty_description')}</p>
+             <Button className="mt-4" onClick={() => router.push('/dashboard')}>
+                {t('dashboard.create_prompt')}
+             </Button>
+        </div>
+      )}
 
     </div>
   );

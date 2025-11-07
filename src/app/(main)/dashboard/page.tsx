@@ -4,41 +4,27 @@ import { useAuth } from "@/hooks/use-auth";
 import PromptEditor from "@/components/dashboard/PromptEditor";
 import PromptList from "@/components/dashboard/PromptList";
 import { useLanguage } from "@/hooks/use-language";
+import { usePrompts } from "@/hooks/use-prompts";
+import { Prompt } from "@/types/prompt";
 
-export interface Prompt {
-  id: number;
-  title: string;
-  category: string;
-}
-
-const initialPrompts: Prompt[] = [
-  { id: 1, title: 'Generate a marketing slogan for a new coffee brand.', category: 'Marketing' },
-  { id: 2, title: 'Write a short story in the style of Edgar Allan Poe.', category: 'Writing' },
-  { id: 3, title: 'Create a responsive navigation bar using Flexbox.', category: 'Developer Tools' },
-  { id: 4, title: 'Design a logo for a tech startup named "Innovate".', category: 'Design' },
-  { id: 5, title: 'Explain the concept of photosynthesis to a 5th grader.', category: 'Education' },
-];
 
 export default function DashboardPage() {
     const { user } = useAuth();
     const { t } = useLanguage();
-    const [prompts, setPrompts] = useState<Prompt[]>(initialPrompts);
+    const { prompts, addPrompt, updatePrompt, deletePrompt } = usePrompts();
     const [editingPrompt, setEditingPrompt] = useState<Prompt | null>(null);
 
     const handleSavePrompt = (prompt: Omit<Prompt, 'id'> & { id?: number }) => {
         if (prompt.id) {
-            // Update existing prompt
-            setPrompts(prompts.map(p => p.id === prompt.id ? { ...p, ...prompt } : p));
+            updatePrompt({ ...prompt, id: prompt.id });
         } else {
-            // Add new prompt
-            const newPrompt = { ...prompt, id: Date.now() };
-            setPrompts([newPrompt, ...prompts]);
+            addPrompt(prompt);
         }
         setEditingPrompt(null);
     };
 
     const handleDeletePrompt = (id: number) => {
-        setPrompts(prompts.filter(p => p.id !== id));
+        deletePrompt(id);
     };
 
     const handleEditPrompt = (id: number) => {
@@ -62,6 +48,7 @@ export default function DashboardPage() {
                     <PromptEditor 
                         onSave={handleSavePrompt} 
                         editingPrompt={editingPrompt}
+                        setEditingPrompt={setEditingPrompt}
                         key={editingPrompt?.id} // Re-mount component when editing prompt changes
                     />
                 </div>

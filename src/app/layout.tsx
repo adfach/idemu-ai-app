@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import './globals.css';
+import { PromptsProvider } from '@/contexts/PromptsContext';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({
@@ -31,8 +32,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable} font-body antialiased`}>
         <AuthProvider>
           <LanguageProvider>
-            {children}
-            <Toaster />
+              {children}
+              <Toaster />
           </LanguageProvider>
         </AuthProvider>
       </body>

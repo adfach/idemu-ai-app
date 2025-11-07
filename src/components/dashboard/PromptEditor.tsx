@@ -34,7 +34,7 @@ import { generatePromptIdeas } from "@/ai/flows/generate-prompt-ideas";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import type { Prompt } from "@/app/(main)/dashboard/page";
+import { Prompt } from "@/types/prompt";
 
 const categories = [
   "Writing",
@@ -48,9 +48,10 @@ const categories = [
 interface PromptEditorProps {
     editingPrompt: Prompt | null;
     onSave: (prompt: Omit<Prompt, 'id'> & { id?: number }) => void;
+    setEditingPrompt: (prompt: Prompt | null) => void;
 }
 
-export default function PromptEditor({ editingPrompt, onSave }: PromptEditorProps) {
+export default function PromptEditor({ editingPrompt, onSave, setEditingPrompt }: PromptEditorProps) {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [promptText, setPromptText] = useState("");
@@ -144,14 +145,14 @@ export default function PromptEditor({ editingPrompt, onSave }: PromptEditorProp
     });
     setPromptText("");
     setCategory("");
+    setEditingPrompt(null);
     setIsLoading(null);
   }
 
   const handleCancelEdit = () => {
+      setEditingPrompt(null);
       setPromptText("");
       setCategory("");
-      // A bit of a hack to reset the parent state
-      onSave({id: undefined, title: '', category: ''});
   }
 
   return (
