@@ -9,9 +9,25 @@
   },
   "home": {
     "hero_title": "Craft the Perfect Prompt, Every Time with IdemuAI",
+    "hero_title_part1": "Craft the Perfect Prompt, Every Time with",
     "hero_subtitle": "Your bilingual AI-powered partner for creating, sharing, and optimizing high-quality prompts.",
     "cta_start": "Start Creating for Free",
-    "cta_explore": "Explore Marketplace"
+    "cta_explore": "Explore Marketplace",
+    "features_title": "Everything You Need to Succeed",
+    "features_subtitle": "IdemuAI provides a comprehensive suite of tools to elevate your prompt engineering.",
+    "cta_final_title": "Ready to Unleash Your Creativity?",
+    "cta_final_subtitle": "Join thousands of creators and build better AI interactions today.",
+    "cta_final_button": "Sign Up Now",
+    "feature_list": {
+      "ai-powered_optimization": "AI-Powered Optimization",
+      "enhance_your_prompts_with_gemini_for_better_clarity_and_style": "Enhance your prompts with Gemini for better clarity and style.",
+      "bilingual_interface": "Bilingual Interface",
+      "seamlessly_switch_between_bahasa_indonesia_and_english": "Seamlessly switch between Bahasa Indonesia and English.",
+      "prompt_marketplace": "Prompt Marketplace",
+      "explore,_share,_and_remix_prompts_from_a_vibrant_community": "Explore, share, and remix prompts from a vibrant community.",
+      "ai_mentor": "AI Mentor",
+      "get_guided_help_and_improvement_tips_from_our_smart_assistant": "Get guided help and improvement tips from our smart assistant."
+    }
   },
   "auth": {
     "welcome_back": "Welcome back!",

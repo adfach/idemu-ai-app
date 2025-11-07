@@ -9,9 +9,25 @@
   },
   "home": {
     "hero_title": "Ciptakan Prompt Sempurna, Setiap Saat dengan IdemuAI",
+    "hero_title_part1": "Ciptakan Prompt Sempurna, Setiap Saat dengan",
     "hero_subtitle": "Partner dwibahasa berbasis AI Anda untuk membuat, berbagi, dan mengoptimalkan prompt berkualitas tinggi.",
     "cta_start": "Mulai Membuat Gratis",
-    "cta_explore": "Jelajahi Marketplace"
+    "cta_explore": "Jelajahi Marketplace",
+    "features_title": "Semua yang Anda Butuhkan untuk Sukses",
+    "features_subtitle": "IdemuAI menyediakan serangkaian alat komprehensif untuk meningkatkan rekayasa prompt Anda.",
+    "cta_final_title": "Siap untuk Melepaskan Kreativitas Anda?",
+    "cta_final_subtitle": "Bergabunglah dengan ribuan pencipta dan bangun interaksi AI yang lebih baik hari ini.",
+    "cta_final_button": "Daftar Sekarang",
+    "feature_list": {
+      "ai-powered_optimization": "Optimasi Berbasis AI",
+      "enhance_your_prompts_with_gemini_for_better_clarity_and_style": "Tingkatkan prompt Anda dengan Gemini untuk kejelasan dan gaya yang lebih baik.",
+      "bilingual_interface": "Antarmuka Dwibahasa",
+      "seamlessly_switch_between_bahasa_indonesia_and_english": "Beralih dengan mulus antara Bahasa Indonesia dan Bahasa Inggris.",
+      "prompt_marketplace": "Marketplace Prompt",
+      "explore,_share,_and_remix_prompts_from_a_vibrant_community": "Jelajahi, bagikan, dan remix prompt dari komunitas yang dinamis.",
+      "ai_mentor": "Mentor AI",
+      "get_guided_help_and_improvement_tips_from_our_smart_assistant": "Dapatkan bantuan terpandu dan tips perbaikan dari asisten cerdas kami."
+    }
   },
   "auth": {
     "welcome_back": "Selamat datang kembali!",

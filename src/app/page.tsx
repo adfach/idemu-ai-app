@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -11,6 +13,7 @@ import {
   Sparkles,
   Bot,
 } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 const features = [
   {
@@ -40,6 +43,7 @@ const features = [
 ];
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -50,21 +54,20 @@ export default function Home() {
           <div className="container mx-auto px-4 text-center">
             <div className="mx-auto max-w-3xl">
               <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Craft the Perfect Prompt, Every Time with{' '}
+                {t('home.hero_title_part1')}{' '}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   IdemuAI
                 </span>
               </h1>
               <p className="mt-6 text-lg text-muted-foreground md:text-xl">
-                Your bilingual AI-powered partner for creating, sharing, and
-                optimizing high-quality prompts.
+                {t('home.hero_subtitle')}
               </p>
               <div className="mt-10 flex justify-center gap-4">
                 <Button asChild size="lg">
-                  <Link href="/signup">Start Creating for Free</Link>
+                  <Link href="/signup">{t('home.cta_start')}</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/marketplace">Explore Marketplace</Link>
+                  <Link href="/marketplace">{t('home.cta_explore')}</Link>
                 </Button>
               </div>
             </div>
@@ -91,11 +94,10 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Everything You Need to Succeed
+                {t('home.features_title')}
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                IdemuAI provides a comprehensive suite of tools to elevate your
-                prompt engineering.
+                {t('home.features_subtitle')}
               </p>
             </div>
             <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -109,10 +111,10 @@ export default function Home() {
                       {feature.icon}
                     </div>
                     <h3 className="font-headline text-xl font-semibold">
-                      {feature.title}
+                      {t(`home.feature_list.${feature.title.replace(/ /g, '_').toLowerCase()}`)}
                     </h3>
                     <p className="mt-2 text-muted-foreground">
-                      {feature.description}
+                       {t(`home.feature_list.${feature.description.replace(/ /g, '_').toLowerCase().replace(/[.]/g, '')}`)}
                     </p>
                   </CardContent>
                 </Card>
@@ -125,14 +127,14 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-5xl text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Ready to Unleash Your Creativity?
+                {t('home.cta_final_title')}
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Join thousands of creators and build better AI interactions today.
+                {t('home.cta_final_subtitle')}
               </p>
               <div className="mt-8">
                 <Button asChild size="lg">
-                  <Link href="/signup">Sign Up Now</Link>
+                  <Link href="/signup">{t('home.cta_final_button')}</Link>
                 </Button>
               </div>
             </div>
