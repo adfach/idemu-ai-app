@@ -71,13 +71,13 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative mx-auto max-w-md">
               <Card className="glass-card relative shadow-2xl shadow-primary/10">
                 <CardContent className="p-2">
                   <Image
-                    src="https://picsum.photos/seed/prompt-result/600/600"
-                    width={600}
-                    height={600}
+                    src="https://picsum.photos/seed/prompt-result/400/400"
+                    width={400}
+                    height={400}
                     alt="Hasil generate prompt"
                     className="aspect-square w-full rounded-lg object-cover"
                     data-ai-hint="abstract art"
