@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -25,6 +25,7 @@ import {
   Loader2,
   BrainCircuit,
   PlusCircle,
+  X,
 } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { optimizePromptWithGemini } from "@/ai/flows/optimize-prompt-with-gemini";
@@ -33,6 +34,7 @@ import { generatePromptIdeas } from "@/ai/flows/generate-prompt-ideas";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import type { Prompt } from "@/app/(main)/dashboard/page";
 
 const categories = [
   "Writing",
@@ -43,25 +45,37 @@ const categories = [
   "Education",
 ];
 
-export default function PromptEditor() {
+interface PromptEditorProps {
+    editingPrompt: Prompt | null;
+    onSave: (prompt: Omit<Prompt, 'id'> & { id?: number }) => void;
+}
+
+export default function PromptEditor({ editingPrompt, onSave }: PromptEditorProps) {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const [prompt, setPrompt] = useState("");
+  const [promptText, setPromptText] = useState("");
   const [category, setCategory] = useState("");
   const [isLoading, setIsLoading] = useState<
     "optimize" | "suggestions" | "ideas" | "save" | null
   >(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [ideas, setIdeas] = useState<string[]>([]);
+  
+  useEffect(() => {
+    if (editingPrompt) {
+      setPromptText(editingPrompt.title);
+      setCategory(editingPrompt.category);
+    }
+  }, [editingPrompt]);
 
   const handleOptimize = async () => {
-    if (!prompt) return;
+    if (!promptText) return;
     setIsLoading("optimize");
     setSuggestions([]);
     setIdeas([]);
     try {
-      const result = await optimizePromptWithGemini({ prompt });
-      setPrompt(result.optimizedPrompt);
+      const result = await optimizePromptWithGemini({ prompt: promptText });
+      setPromptText(result.optimizedPrompt);
       toast({
         title: "Prompt Optimized!",
         description: "Your prompt has been enhanced by Gemini.",
@@ -77,12 +91,12 @@ export default function PromptEditor() {
   };
 
   const handleSuggestions = async () => {
-    if (!prompt) return;
+    if (!promptText) return;
     setIsLoading("suggestions");
     setSuggestions([]);
     setIdeas([]);
     try {
-      const result = await suggestPromptImprovements({ prompt });
+      const result = await suggestPromptImprovements({ prompt: promptText });
       setSuggestions(result.suggestions);
     } catch (error) {
       toast({
@@ -95,12 +109,12 @@ export default function PromptEditor() {
   };
 
   const handleGenerateIdeas = async () => {
-    if (!prompt) return;
+    if (!promptText) return;
     setIsLoading("ideas");
     setSuggestions([]);
     setIdeas([]);
     try {
-      const result = await generatePromptIdeas({ topic: prompt });
+      const result = await generatePromptIdeas({ topic: promptText });
       setIdeas(result.ideas);
     } catch (error) {
       toast({
@@ -113,30 +127,55 @@ export default function PromptEditor() {
   };
   
   const handleSave = async () => {
+    if (!promptText || !category) {
+        toast({
+            variant: "destructive",
+            title: "Save Failed",
+            description: "Prompt text and category are required.",
+        });
+        return;
+    }
     setIsLoading("save");
-    await new Promise(res => setTimeout(res, 1000)); // Simulate save
+    await new Promise(res => setTimeout(res, 500)); // Simulate save
+    onSave({ id: editingPrompt?.id, title: promptText, category });
     toast({
-        title: "Prompt Saved",
-        description: "Your new prompt has been added to your library.",
-      });
+        title: editingPrompt ? "Prompt Updated" : "Prompt Saved",
+        description: `Your prompt has been ${editingPrompt ? 'updated' : 'saved'}.`,
+    });
+    setPromptText("");
+    setCategory("");
     setIsLoading(null);
+  }
+
+  const handleCancelEdit = () => {
+      setPromptText("");
+      setCategory("");
+      // A bit of a hack to reset the parent state
+      onSave({id: undefined, title: '', category: ''});
   }
 
   return (
     <Card className="glass-card w-full">
       <CardHeader>
-        <CardTitle className="font-headline flex items-center gap-2">
-          <PlusCircle className="h-6 w-6" /> {t('dashboard.prompt_editor.title')}
-        </CardTitle>
+        <div className="flex items-center justify-between">
+            <CardTitle className="font-headline flex items-center gap-2">
+            <PlusCircle className="h-6 w-6" /> {editingPrompt ? 'Edit Prompt' : t('dashboard.prompt_editor.title')}
+            </CardTitle>
+            {editingPrompt && (
+                <Button variant="ghost" size="sm" onClick={handleCancelEdit}>
+                    <X className="mr-2 h-4 w-4" /> Cancel Edit
+                </Button>
+            )}
+        </div>
         <CardDescription>
-          {t('dashboard.prompt_editor.description')}
+          {editingPrompt ? `You are editing "${editingPrompt.title}"` : t('dashboard.prompt_editor.description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <Textarea
           placeholder={t('dashboard.prompt_editor.placeholder')}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          value={promptText}
+          onChange={(e) => setPromptText(e.target.value)}
           className="min-h-[150px] text-base"
         />
         <Select onValueChange={setCategory} value={category}>
@@ -163,7 +202,7 @@ export default function PromptEditor() {
                     key={index}
                     variant="secondary"
                     className="mr-2 mb-2 cursor-pointer hover:bg-primary/20"
-                    onClick={() => setPrompt(item)}
+                    onClick={() => setPromptText(item)}
                   >
                     {item}
                   </Badge>
@@ -177,7 +216,7 @@ export default function PromptEditor() {
         <div className="flex gap-2">
           <Button
             onClick={handleOptimize}
-            disabled={!prompt || !!isLoading}
+            disabled={!promptText || !!isLoading}
             variant="outline"
           >
             {isLoading === "optimize" ? (
@@ -189,7 +228,7 @@ export default function PromptEditor() {
           </Button>
           <Button
             onClick={handleSuggestions}
-            disabled={!prompt || !!isLoading}
+            disabled={!promptText || !!isLoading}
             variant="outline"
           >
             {isLoading === "suggestions" ? (
@@ -201,7 +240,7 @@ export default function PromptEditor() {
           </Button>
           <Button
             onClick={handleGenerateIdeas}
-            disabled={!prompt || !!isLoading}
+            disabled={!promptText || !!isLoading}
             variant="outline"
           >
             {isLoading === "ideas" ? (
@@ -212,13 +251,13 @@ export default function PromptEditor() {
             {t('dashboard.prompt_editor.ideas')}
           </Button>
         </div>
-        <Button onClick={handleSave} disabled={!prompt || !category || isLoading}>
+        <Button onClick={handleSave} disabled={!promptText || !category || !!isLoading}>
           {isLoading === "save" ? (
             <Loader2 className="animate-spin" />
           ) : (
             <Save />
           )}
-          {t('dashboard.prompt_editor.save')}
+          {editingPrompt ? 'Update Prompt' : t('dashboard.prompt_editor.save')}
         </Button>
       </CardFooter>
     </Card>
