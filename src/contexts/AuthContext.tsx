@@ -18,6 +18,7 @@ interface AuthContextType {
   signIn: (provider: 'google' | 'github' | 'email', data?: any) => Promise<void>;
   signUp: (data: any) => Promise<void>;
   signOut: () => Promise<void>;
+  updateProfile: (data: { displayName?: string; photoURL?: string }) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,8 +86,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.push('/login');
   };
 
+  const updateProfile = async (data: { displayName?: string; photoURL?: string }) => {
+    if (!user) return;
+    setLoading(true);
+    await new Promise(res => setTimeout(res, 500));
+    const updatedUser = { ...user, ...data };
+    setUser(updatedUser);
+    sessionStorage.setItem('idemu_user', JSON.stringify(updatedUser));
+    setLoading(false);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

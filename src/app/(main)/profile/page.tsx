@@ -1,20 +1,49 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/use-auth";
-import { Camera } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Camera, Loader2 } from "lucide-react";
 
 export default function ProfilePage() {
-    const { user } = useAuth();
+    const { user, updateProfile, loading } = useAuth();
+    const { toast } = useToast();
+    const [displayName, setDisplayName] = useState(user?.displayName || '');
+    const [isSaving, setIsSaving] = useState(false);
+
+    useEffect(() => {
+        if (user?.displayName) {
+            setDisplayName(user.displayName);
+        }
+    }, [user?.displayName]);
     
     const getInitials = (name: string | null | undefined) => {
         if (!name) return 'U';
         return name.split(' ').map(n => n[0]).slice(0, 2).join('');
     }
+
+    const handleSaveChanges = async () => {
+        setIsSaving(true);
+        try {
+            await updateProfile({ displayName });
+            toast({
+                title: "Profile Updated",
+                description: "Your changes have been saved successfully.",
+            });
+        } catch (error) {
+             toast({
+                variant: "destructive",
+                title: "Update Failed",
+                description: "Could not save your changes. Please try again.",
+            });
+        }
+        setIsSaving(false);
+    };
 
     return (
         <div className="space-y-8">
@@ -48,7 +77,7 @@ export default function ProfilePage() {
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="name">Full Name</Label>
-                        <Input id="name" defaultValue={user?.displayName || ''} />
+                        <Input id="name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} disabled={isSaving || loading} />
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
@@ -56,7 +85,10 @@ export default function ProfilePage() {
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button>Save Changes</Button>
+                    <Button onClick={handleSaveChanges} disabled={isSaving || loading || displayName === user?.displayName}>
+                        {isSaving ? <Loader2 className="animate-spin" /> : null}
+                        {isSaving ? 'Saving...' : 'Save Changes'}
+                    </Button>
                 </CardFooter>
             </Card>
 
