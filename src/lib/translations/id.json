@@ -15,7 +15,7 @@
   "auth": {
     "welcome_back": "Selamat datang kembali!",
     "login_prompt": "Silakan masukkan detail Anda untuk masuk.",
-    "create_account": "Buat sebuah akun",
+    "create_account": "Buat akun",
     "signup_prompt": "Masukkan informasi Anda untuk membuat akun.",
     "email": "Email",
     "password": "Kata Sandi",
