@@ -69,7 +69,7 @@ export default function MainLayout({
       <SidebarProvider>
         <Sidebar>
           <SidebarHeader className="p-4">
-            <Link href="/dashboard" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <IdemuLogo className="h-8 w-8" />
               <span className="font-headline text-xl font-bold text-foreground">
                 IdemuAI
