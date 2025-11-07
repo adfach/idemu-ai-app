@@ -90,7 +90,19 @@
     "update_success_title": "Profile Updated",
     "update_success_desc": "Your changes have been saved successfully.",
     "update_failed_title": "Update Failed",
-    "update_failed_desc": "Could not save your changes. Please try again."
+    "update_failed_desc": "Could not save your changes. Please try again.",
+    "photo_update_success_desc": "Your profile picture has been updated.",
+    "photo_update_failed_desc": "Could not update your profile picture. Please try again.",
+    "delete_confirmation": {
+      "title": "Are you absolutely sure?",
+      "description": "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete my account"
+    },
+    "delete_account_success_title": "Account Deleted",
+    "delete_account_success_desc": "Your account has been successfully deleted.",
+    "delete_account_failed_title": "Deletion Failed",
+    "delete_account_failed_desc": "Could not delete your account. Please try again."
   },
   "library": {
     "title": "My Prompt Library",

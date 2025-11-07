@@ -10,9 +10,20 @@ import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { Camera, Loader2 } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export default function ProfilePage() {
-    const { user, updateProfile, loading } = useAuth();
+    const { user, updateProfile, loading, deleteAccount } = useAuth();
     const { toast } = useToast();
     const { t } = useLanguage();
     const [displayName, setDisplayName] = useState(user?.displayName || '');
@@ -64,7 +75,7 @@ export default function ProfilePage() {
                 await updateProfile({ photoURL });
                 toast({
                     title: t('profile.update_success_title'),
-                    description: "Your profile picture has been updated.",
+                    description: t('profile.photo_update_success_desc'),
                 });
                 setIsSaving(false);
             };
@@ -73,11 +84,28 @@ export default function ProfilePage() {
             toast({
                 variant: "destructive",
                 title: t('profile.update_failed_title'),
-                description: "Could not update your profile picture. Please try again.",
+                description: t('profile.photo_update_failed_desc'),
             });
             setIsSaving(false);
         }
     };
+    
+    const handleDeleteAccount = async () => {
+        try {
+            await deleteAccount();
+            toast({
+                title: t('profile.delete_account_success_title'),
+                description: t('profile.delete_account_success_desc'),
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: t('profile.delete_account_failed_title'),
+                description: t('profile.delete_account_failed_desc'),
+            });
+        }
+    }
+
 
     return (
         <div className="space-y-8">
@@ -139,7 +167,25 @@ export default function ProfilePage() {
                     <CardDescription>{t('profile.danger_zone_desc')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button variant="destructive">{t('profile.delete_account_button')}</Button>
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <Button variant="destructive">{t('profile.delete_account_button')}</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                            <AlertDialogTitle>{t('profile.delete_confirmation.title')}</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                {t('profile.delete_confirmation.description')}
+                            </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                            <AlertDialogCancel>{t('profile.delete_confirmation.cancel')}</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDeleteAccount} className="bg-destructive hover:bg-destructive/90">
+                                {t('profile.delete_confirmation.confirm')}
+                            </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                     <p className="text-sm text-muted-foreground mt-2">{t('profile.delete_account_warning')}</p>
                 </CardContent>
             </Card>

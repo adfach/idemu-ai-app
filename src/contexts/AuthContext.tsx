@@ -19,6 +19,7 @@ interface AuthContextType {
   signUp: (data: any) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (data: { displayName?: string; photoURL?: string }) => Promise<void>;
+  deleteAccount: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -95,9 +96,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     sessionStorage.setItem('idemu_user', JSON.stringify(updatedUser));
     setLoading(false);
   };
+  
+  const deleteAccount = async () => {
+    setLoading(true);
+    await new Promise(res => setTimeout(res, 500));
+    setUser(null);
+    sessionStorage.removeItem('idemu_user');
+    setLoading(false);
+    router.push('/');
+  };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, updateProfile }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, updateProfile, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );

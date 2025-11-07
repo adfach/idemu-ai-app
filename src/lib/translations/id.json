@@ -90,7 +90,19 @@
     "update_success_title": "Profil Diperbarui",
     "update_success_desc": "Perubahan Anda telah berhasil disimpan.",
     "update_failed_title": "Pembaruan Gagal",
-    "update_failed_desc": "Tidak dapat menyimpan perubahan Anda. Silakan coba lagi."
+    "update_failed_desc": "Tidak dapat menyimpan perubahan Anda. Silakan coba lagi.",
+    "photo_update_success_desc": "Foto profil Anda telah diperbarui.",
+    "photo_update_failed_desc": "Tidak dapat memperbarui foto profil Anda. Silakan coba lagi.",
+    "delete_confirmation": {
+      "title": "Apakah Anda benar-benar yakin?",
+      "description": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus akun Anda secara permanen dan menghapus data Anda dari server kami.",
+      "cancel": "Batal",
+      "confirm": "Ya, hapus akun saya"
+    },
+    "delete_account_success_title": "Akun Dihapus",
+    "delete_account_success_desc": "Akun Anda telah berhasil dihapus.",
+    "delete_account_failed_title": "Penghapusan Gagal",
+    "delete_account_failed_desc": "Tidak dapat menghapus akun Anda. Silakan coba lagi."
   },
   "library": {
     "title": "Pustaka Prompt Saya",
