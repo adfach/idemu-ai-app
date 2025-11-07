@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,7 @@ export default function ProfilePage() {
     const { t } = useLanguage();
     const [displayName, setDisplayName] = useState(user?.displayName || '');
     const [isSaving, setIsSaving] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (user?.displayName) {
@@ -47,6 +48,37 @@ export default function ProfilePage() {
         setIsSaving(false);
     };
 
+    const handleCameraClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsSaving(true);
+        try {
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const photoURL = reader.result as string;
+                await updateProfile({ photoURL });
+                toast({
+                    title: t('profile.update_success_title'),
+                    description: "Your profile picture has been updated.",
+                });
+                setIsSaving(false);
+            };
+            reader.readAsDataURL(file);
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: t('profile.update_failed_title'),
+                description: "Could not update your profile picture. Please try again.",
+            });
+            setIsSaving(false);
+        }
+    };
+
     return (
         <div className="space-y-8">
              <div>
@@ -68,9 +100,16 @@ export default function ProfilePage() {
                                 <AvatarImage src={user?.photoURL ?? ''} />
                                 <AvatarFallback className="text-2xl">{getInitials(user?.displayName)}</AvatarFallback>
                             </Avatar>
-                            <Button size="icon" variant="outline" className="absolute bottom-0 right-0 h-7 w-7 rounded-full">
-                                <Camera className="h-4 w-4" />
+                            <Button size="icon" variant="outline" className="absolute bottom-0 right-0 h-7 w-7 rounded-full" onClick={handleCameraClick} disabled={isSaving}>
+                                {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
                             </Button>
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                onChange={handlePhotoChange}
+                                style={{ display: 'none' }}
+                                accept="image/*"
+                            />
                         </div>
                         <div className="flex-1">
                              <h3 className="text-lg font-semibold">{user?.displayName}</h3>
@@ -88,8 +127,8 @@ export default function ProfilePage() {
                 </CardContent>
                 <CardFooter>
                     <Button onClick={handleSaveChanges} disabled={isSaving || loading || displayName === user?.displayName}>
-                        {isSaving ? <Loader2 className="animate-spin" /> : null}
-                        {isSaving ? t('profile.saving') : t('profile.save_changes')}
+                        {isSaving && !fileInputRef.current?.files?.length ? <Loader2 className="animate-spin" /> : null}
+                        {isSaving && !fileInputRef.current?.files?.length ? t('profile.saving') : t('profile.save_changes')}
                     </Button>
                 </CardFooter>
             </Card>
