@@ -13,10 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/use-auth";
-import { LayoutDashboard, User, LogOut, Star } from 'lucide-react';
+import { LayoutDashboard, User, LogOut, Library } from 'lucide-react';
+import { useLanguage } from "@/hooks/use-language";
 
 export function UserNav() {
   const { user, signOut, loading } = useAuth();
+  const { t } = useLanguage();
 
   if (loading) {
     return <div className="h-9 w-9 animate-pulse rounded-full bg-muted"></div>
@@ -64,26 +66,26 @@ export function UserNav() {
           <Link href="/dashboard">
             <DropdownMenuItem>
               <LayoutDashboard className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
+              <span>{t('user_nav.dashboard')}</span>
+            </DropdownMenuItem>
+          </Link>
+           <Link href="/library">
+            <DropdownMenuItem>
+              <Library className="mr-2 h-4 w-4" />
+              <span>{t('user_nav.library')}</span>
             </DropdownMenuItem>
           </Link>
           <Link href="/profile">
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </DropdownMenuItem>
-          </Link>
-          <Link href="/pricing">
-            <DropdownMenuItem>
-              <Star className="mr-2 h-4 w-4" />
-              <span>Upgrade</span>
+              <span>{t('user_nav.profile')}</span>
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={signOut}>
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+          <span>{t('user_nav.logout')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

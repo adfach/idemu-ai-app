@@ -72,8 +72,9 @@
   },
   "user_nav": {
     "profile": "Profil",
-    "upgrade": "Tingkatkan",
-    "logout": "Keluar"
+    "library": "Pustaka",
+    "logout": "Keluar",
+    "dashboard": "Dasbor"
   },
   "profile": {
     "title": "Profil Anda",
@@ -90,5 +91,14 @@
     "update_success_desc": "Perubahan Anda telah berhasil disimpan.",
     "update_failed_title": "Pembaruan Gagal",
     "update_failed_desc": "Tidak dapat menyimpan perubahan Anda. Silakan coba lagi."
+  },
+  "library": {
+    "title": "Pustaka Prompt Saya",
+    "subtitle": "Semua prompt tersimpan Anda di satu tempat. Edit, gunakan, atau bagikan.",
+    "search_placeholder": "Cari di pustaka Anda...",
+    "sort_by": "Urutkan menurut",
+    "sort_newest": "Terbaru",
+    "sort_oldest": "Terlama",
+    "sort_alphabetical": "Abjad"
   }
 }

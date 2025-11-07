@@ -72,8 +72,9 @@
   },
   "user_nav": {
     "profile": "Profile",
-    "upgrade": "Upgrade",
-    "logout": "Log out"
+    "library": "Library",
+    "logout": "Log out",
+    "dashboard": "Dashboard"
   },
   "profile": {
     "title": "Your Profile",
@@ -90,5 +91,14 @@
     "update_success_desc": "Your changes have been saved successfully.",
     "update_failed_title": "Update Failed",
     "update_failed_desc": "Could not save your changes. Please try again."
+  },
+  "library": {
+    "title": "My Prompt Library",
+    "subtitle": "All your saved prompts in one place. Edit, use, or share them.",
+    "search_placeholder": "Search in your library...",
+    "sort_by": "Sort by",
+    "sort_newest": "Newest",
+    "sort_oldest": "Oldest",
+    "sort_alphabetical": "Alphabetical"
   }
 }

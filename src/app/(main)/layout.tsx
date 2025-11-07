@@ -22,6 +22,7 @@ import {
   User,
   ShieldCheck,
   Settings,
+  Library,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -32,8 +33,8 @@ import AiMentor from '@/components/AiMentor';
 const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/marketplace', icon: Store, label: 'Marketplace' },
+  { href: '/library', icon: Library, label: 'Library' },
   { href: '/profile', icon: User, label: 'Profile' },
-  { href: '/pricing', icon: Star, label: 'Pricing' },
 ];
 
 export default function MainLayout({
