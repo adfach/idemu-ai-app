@@ -2,7 +2,6 @@
   command = "next build"
   publish = ".next"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# This plugin will handle Next.js specific configurations
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
