@@ -66,9 +66,6 @@ export default function Home() {
                 <Button asChild size="lg">
                   <Link href="/signup">{t('home.cta_start')}</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/marketplace">{t('home.cta_explore')}</Link>
-                </Button>
               </div>
             </div>
             <div className="relative mx-auto max-w-md">
