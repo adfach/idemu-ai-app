@@ -6,6 +6,14 @@ import { UserNav } from "@/components/layout/UserNav";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu } from "lucide-react";
+
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -25,14 +33,37 @@ export function Header() {
           ) : user ? (
             <UserNav />
           ) : (
-            <div className="hidden items-center gap-2 sm:flex">
-              <Button variant="ghost" asChild>
-                <Link href="/login">Log In</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/signup">Sign Up</Link>
-              </Button>
-            </div>
+            <>
+              <div className="hidden items-center gap-2 sm:flex">
+                <Button variant="ghost" asChild>
+                  <Link href="/login">Log In</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/signup">Sign Up</Link>
+                </Button>
+              </div>
+              <div className="sm:hidden">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Menu />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <Link href="/login">
+                      <DropdownMenuItem>
+                        Log In
+                      </DropdownMenuItem>
+                    </Link>
+                    <Link href="/signup">
+                       <DropdownMenuItem>
+                        Sign Up
+                      </DropdownMenuItem>
+                    </Link>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </>
           )}
         </div>
       </div>
