@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 
 export function Header() {
@@ -26,7 +27,8 @@ export function Header() {
           <span className="font-headline text-lg font-bold">IdemuAI</span>
         </Link>
         
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeSwitcher />
           <LanguageSwitcher />
           {loading ? (
              <div className="h-9 w-20 animate-pulse rounded-md bg-muted"></div>
