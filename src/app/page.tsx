@@ -63,8 +63,8 @@ export default function Home() {
                 {t('home.hero_subtitle')}
               </p>
               <div className="mt-10 flex justify-center gap-4 md:justify-start">
-                <Button asChild size="lg">
-                  <Link href="/signup">{t('home.cta_start')}</Link>
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Link href="/login">{t('auth.login_button')}</Link>
                 </Button>
               </div>
             </div>
