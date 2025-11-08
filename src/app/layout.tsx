@@ -32,8 +32,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable} font-body antialiased`}>
         <AuthProvider>
           <LanguageProvider>
+            <PromptsProvider>
               {children}
               <Toaster />
+            </PromptsProvider>
           </LanguageProvider>
         </AuthProvider>
       </body>
