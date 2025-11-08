@@ -62,7 +62,7 @@ export default function Home() {
               <p className="mt-6 text-lg text-muted-foreground md:text-xl">
                 {t('home.hero_subtitle')}
               </p>
-              <div className="mt-10 flex justify-center gap-4 md:justify-start">
+              <div className="mt-10 hidden justify-center gap-4 md:flex md:justify-start">
                 <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/login">{t('auth.login_button')}</Link>
                 </Button>
@@ -82,6 +82,11 @@ export default function Home() {
                   />
                 </CardContent>
               </Card>
+              <div className="mt-8 flex justify-center md:hidden">
+                 <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Link href="/login">{t('auth.login_button')}</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
