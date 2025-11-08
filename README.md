@@ -1,1 +1,2 @@
 # idemuAI
+# idemu-ai-app
